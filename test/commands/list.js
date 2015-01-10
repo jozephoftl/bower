@@ -136,7 +136,7 @@ describe('bower list', function () {
             return list({paths: true}).spread(function(results) {
                 expect(results).to.be.an(Object);
                 expect(results.package).to.equal(
-                    path.normalize('bower_components/package/test.txt')
+                    'bower_components/package/test.txt'
                 );
             });
         });
@@ -157,8 +157,8 @@ describe('bower list', function () {
                 expect(results).to.be.an(Object);
                 expect(results.package).to.be.an(Object);
                 expect(results.package).to.eql([
-                    path.normalize('bower_components/package/test.txt'),
-                    path.normalize('bower_components/package/test2.txt')
+                    'bower_components/package/test.txt',
+                    'bower_components/package/test2.txt'
                 ]);
             });
         });

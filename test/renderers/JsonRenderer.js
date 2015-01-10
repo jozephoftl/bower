@@ -12,7 +12,7 @@ var jsonRendererWithPrompt = function (stubs) {
 
 // When cloning on Windows it's possible carrets are used
 var normalize = function (string) {
-    return string.replace(/\r\n|\r/, '\n');
+    return string.replace(/\r\n|\r/g, '\n');
 };
 
 describe('JsonRenderer', function () {
@@ -32,7 +32,8 @@ describe('JsonRenderer', function () {
                   "id": "foobar",
                   "message": "hello world"
                 }]
-            */}) + '\n'));
+
+            */})));
         });
     });
 
@@ -61,7 +62,8 @@ describe('JsonRenderer', function () {
                   "level": "error",
                   "message": "hello world"
                 }]
-            */}) + '\n'));
+
+            */})));
         });
     });
 
@@ -95,7 +97,8 @@ describe('JsonRenderer', function () {
                   "default": "something",
                   "level": "prompt"
                 }]
-            */}) + '\n'));
+
+            */})));
         });
     });
 });
