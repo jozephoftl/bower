@@ -279,3 +279,7 @@ exports.hasSvn = function() {
         return false;
     }
 };
+
+exports.isWin = function() {
+    return process.platform === 'win32';
+};

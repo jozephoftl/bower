@@ -516,28 +516,53 @@ describe('StandardRenderer', function () {
                 }
             ]);
         }).spread(function(stdout, stderr) {
-            expect(stdout).to.equal(multiline(function(){/*
+            if (helpers.isWin()) {
+                expect(stdout).to.equal(multiline(function(){/*
 
-                jquery#0.1.2 components/jquery
+                    jquery#0.1.2 components\jquery
 
-                jquery#0.1.2 components/jquery
+                    jquery#0.1.2 components\jquery
 
-                jquery components/jquery not installed
+                    jquery components\jquery not installed
 
-                jquery#0.1.2 components/jquery different
+                    jquery#0.1.2 components\jquery different
 
-                jquery#0.1.2 components/jquery linked
+                    jquery#0.1.2 components\jquery linked
 
-                jquery#0.1.2 components/jquery incompatible with ~0.1.2
+                    jquery#0.1.2 components\jquery incompatible with ~0.1.2
 
-                jquery#0.1.2 components/jquery extraneous
+                    jquery#0.1.2 components\jquery extraneous
 
-                jquery#0.1.2 components/jquery (0.1.5 available, latest is 0.2.0)
+                    jquery#0.1.2 components\jquery (0.1.5 available, latest is 0.2.0)
 
-                jquery#0.1.2 components/jquery
-                ├── angular#0.1.3
-                └── ember#0.2.3
-            */}) + '\n');
+                    jquery#0.1.2 components\jquery
+                    ├── angular#0.1.3
+                    └── ember#0.2.3
+                */}) + '\n');
+            } else {
+                expect(stdout).to.equal(multiline(function(){/*
+
+                    jquery#0.1.2 components/jquery
+
+                    jquery#0.1.2 components/jquery
+
+                    jquery components/jquery not installed
+
+                    jquery#0.1.2 components/jquery different
+
+                    jquery#0.1.2 components/jquery linked
+
+                    jquery#0.1.2 components/jquery incompatible with ~0.1.2
+
+                    jquery#0.1.2 components/jquery extraneous
+
+                    jquery#0.1.2 components/jquery (0.1.5 available, latest is 0.2.0)
+
+                    jquery#0.1.2 components/jquery
+                    ├── angular#0.1.3
+                    └── ember#0.2.3
+                */}) + '\n');
+            }
         });
     });
 
@@ -623,11 +648,19 @@ describe('StandardRenderer', function () {
                 }]
             });
         }).spread(function(stdout, stderr) {
-            expect(stdout).to.equal(multiline(function(){/*
-                bower                    link ./bar > ./foo
+            if (helpers.isWin()) {
+                expect(stdout).to.equal(multiline(function(){/*
+                    bower                    link ./bar > ./foo
 
-                jquery#0.1.2 components/jquery
-            */}) + '\n');
+                    jquery#0.1.2 components\jquery
+                */}) + '\n');
+            } else {
+                expect(stdout).to.equal(multiline(function(){/*
+                    bower                    link ./bar > ./foo
+
+                    jquery#0.1.2 components/jquery
+                */}) + '\n');
+            }
         });
     });
 
