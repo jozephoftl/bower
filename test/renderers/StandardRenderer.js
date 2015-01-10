@@ -578,7 +578,7 @@ describe('StandardRenderer', function () {
                 version: '1.2.3'
             });
         }).spread(function(stdout, stderr) {
-            expect(stdout).to.equal((multiline(function(){/*
+            expect(stdout).to.equal(normalize(multiline(function(){/*
 
                 {
                   version: '1.2.3'
@@ -603,7 +603,7 @@ describe('StandardRenderer', function () {
                 ]
             });
         }).spread(function(stdout, stderr) {
-            expect(stdout).to.equal((multiline(function(){/*
+            expect(stdout).to.equal(normalize(multiline(function(){/*
 
                 {
                   version: '1.2.3'
