@@ -10,6 +10,11 @@ var jsonRendererWithPrompt = function (stubs) {
     });
 };
 
+// When cloning on Windows it's possible carrets are used
+var normalize = function (string) {
+    return string.replace(/\r\n|\r/, '\n');
+};
+
 describe('JsonRenderer', function () {
 
     it('logs simple message to stderr', function () {
@@ -22,12 +27,12 @@ describe('JsonRenderer', function () {
 
             renderer.end();
         }).spread(function(stdout, stderr) {
-            expect(stderr).to.eq(multiline(function(){/*
+            expect(stderr).to.eq(normalize(multiline(function(){/*
                 [{
                   "id": "foobar",
                   "message": "hello world"
                 }]
-            */}) + '\n');
+            */}) + '\n'));
         });
     });
 
@@ -46,7 +51,7 @@ describe('JsonRenderer', function () {
                 ]
             });
         }).spread(function(stdout, stderr) {
-            expect(stderr).to.eq(multiline(function(){/*
+            expect(stderr).to.eq(normalize(multiline(function(){/*
                 [{
                   "id": "error",
                   "data": {
@@ -56,7 +61,7 @@ describe('JsonRenderer', function () {
                   "level": "error",
                   "message": "hello world"
                 }]
-            */}) + '\n');
+            */}) + '\n'));
         });
     });
 
@@ -82,7 +87,7 @@ describe('JsonRenderer', function () {
                 renderer.end();
             });
         }).spread(function(stdout, stderr) {
-            expect(stderr).to.eq(multiline(function(){/*
+            expect(stderr).to.eq(normalize(multiline(function(){/*
                 [{
                   "type": "input",
                   "name": "field",
@@ -90,7 +95,7 @@ describe('JsonRenderer', function () {
                   "default": "something",
                   "level": "prompt"
                 }]
-            */}) + '\n');
+            */}) + '\n'));
         });
     });
 });
