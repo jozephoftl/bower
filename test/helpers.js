@@ -10,6 +10,7 @@ var fs = require('fs');
 var glob = require('glob');
 var os = require('os');
 var which = require('which');
+var path = require('path');
 var proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 var cmd = require('../lib/util/cmd');
 var config = require('../lib/config');
@@ -274,4 +275,14 @@ exports.hasSvn = function() {
 
 exports.isWin = function() {
     return process.platform === 'win32';
+};
+
+exports.localSource = function (localPath) {
+    localPath = path.normalize(localPath);
+
+    if (!exports.isWin()) {
+        localPath = 'file://' + localPath;
+    }
+
+    return localPath;
 };
